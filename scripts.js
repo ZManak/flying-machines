@@ -32,32 +32,56 @@ const militaryHelicopter = [
 
 class Gallery {
     constructor(civilImages, militaryImages) {
+        this.civilImages = civilImages;
+        this.militaryImages = militaryImages;
     }
-    
+
     getRandomCivil() {
+        let randomCivil = this.civilImages[Math.floor(Math.random() * 5)];
+        return randomCivil;
     }
-    
+
     getRandomMilitary() {
+        let randomMilitary = this.militaryImages[Math.floor(Math.random() * 5)]
+        return randomMilitary;
     }
-    
+
     getAll() {
+        let allImages = this.civilImages.concat(this.militaryImages);
+        return allImages;
     }
 }
 
 class Painter {
     constructor() {
+        this.gallery = this.createGallery();
     }
 
     createGallery() {
+        let section = document.createElement('section');
+        document.body.appendChild(section);
+        return section
     }
 
     createImageTag(imageUrl) {
+        let url = imageUrl;
+        let picture = document.createElement('img');
+        picture.setAttribute('src', url);
+        return picture;
     }
 
     paintSingleImage(imageUrl) {
+        let url = imageUrl;
+        let gallery = this.gallery;
+        let picture = this.createImageTag(url);
+        gallery.appendChild(picture);
     }
 
     paintMultipleImages(arrayOfImages) {
+        let pictures = arrayOfImages;
+        pictures.forEach(pic => {
+            this.paintSingleImage(pic)
+        });
     }
 }
 
